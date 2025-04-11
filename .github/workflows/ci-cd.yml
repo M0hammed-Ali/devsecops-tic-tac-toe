@@ -165,6 +165,10 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
       
+      - name: Set lowercase image name
+        id: image_name
+        run: echo "value=${GITHUB_REPOSITORY,,}" >> $GITHUB_OUTPUT
+      
       - name: Update Kubernetes deployment file
         env:
           IMAGE_TAG: sha-${{ github.sha }}
