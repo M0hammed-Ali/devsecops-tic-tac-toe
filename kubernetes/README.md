@@ -80,3 +80,49 @@ View logs:
 ```bash
 kubectl logs -l app=tic-tac-toe
 ```
+
+
+## MY setup:
+minikube start --profile=devsecops-demo
+minikube profile list
+minikube stop -p minikube
+minikube profile devsecops-demo
+minikube status
+
+kubectl config current-context
+kubectl get nodes
+
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+kubectl get pods -n argocd -w
+kubectl get svc -n argocd
+
+kubectl port-forward svc/argocd-server 9000:80 -n argocd
+kubectl get secrets -n argocd
+kubectl edit secret argocd-initial-admin-secret -n argocd
+echo UklGLXVXRXEyT3BCOU04OQ== | base64 --decode
+username: admin
+Password: after decode
+
+kubectl get pods --all-namespaces
+kubectl exec -it tic-tac-toe-6c9fb64c9f-9vrhx -n <namespace> -- sh
+
+ minikube service tic-tac-toe --url
+
+ kubectl get ingress
+ kubectl get pods -n ingress-nginx
+ minikube addons enable ingress
+ kubectl get pods -n ingress-nginx
+ 
+ minikube ip
+ sudo nano /etc/hosts
+ kubectl describe ingress tic-tac-toe-ingress
+
+kubectl get pods
+NAME                           READY   STATUS    RESTARTS   AGE
+tic-tac-toe-6c9fb64c9f-2jb7d   1/1     Running   0          4m36s
+tic-tac-toe-6c9fb64c9f-cq7xl   1/1     Running   0          4m26s
+tic-tac-toe-6c9fb64c9f-htx2h   1/1     Running   0          4m47s
+
+kubectl port-forward tic-tac-toe-6c9fb64c9f-2jb7d 3700:80
