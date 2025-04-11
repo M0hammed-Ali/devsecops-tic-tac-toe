@@ -168,10 +168,10 @@ jobs:
       - name: Update Kubernetes deployment file
         env:
           IMAGE_TAG: sha-${{ github.sha }}
-          IMAGE_NAME: ${{ steps.image_name.outputs.value }}
           REGISTRY: ghcr.io
         run: |
           # Define the new image with tag
+          IMAGE_NAME="${{ steps.image_name.outputs.value }}"
           NEW_IMAGE="${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
           
           # Update the deployment file directly
